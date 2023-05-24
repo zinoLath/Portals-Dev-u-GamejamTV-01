@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles.y,
             angle
         );
-        Physics2D.gravity = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle)) * -9.8f;
+        Physics2D.gravity = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle)) * 9.8f;
     }
 
     void FixedUpdate()
@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             isWalledR = true;
         }
+
         if(isGrounded)
         {
             horizontalVelocity = Mathf.Lerp(horizontalVelocity, speed * Input.GetAxisRaw("Horizontal"), acceleration);
@@ -109,15 +110,13 @@ public class PlayerController : MonoBehaviour
         {
             horizontalVelocity = Mathf.Clamp(horizontalVelocity, -speed, 0);
         }
+        
+        rigidBody.velocity = new Vector2(horizontalVelocity,  rigidBody.velocity.y);
 
         if(jumpInput > 0 && isGrounded)
         {
-            rigidBody.velocity = MathHelper.RotateVector(new Vector2(horizontalVelocity,  jumpForce),-transform.eulerAngles.z);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x,  rigidBody.velocity.y + jumpForce);
             jumpInput = -1000;
-        }
-        else
-        {
-            rigidBody.velocity = MathHelper.RotateVector(new Vector2(horizontalVelocity, 0),-transform.eulerAngles.z);
         }
         float vertPut = Input.GetAxisRaw("Vertical"); //se a pessoa segurar pra cima/baixo ela cai mais rápido ou devagar
         if(vertPut > 0)
