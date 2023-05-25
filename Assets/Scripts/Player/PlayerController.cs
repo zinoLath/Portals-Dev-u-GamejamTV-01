@@ -31,17 +31,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 originalGravity;
     public Vector2 gravity;
     private bool isPaused = false;
-    private EnemyFollow enemyFollow;
+
 
     void Start()
     {
         originalGravity = Physics2D.gravity;
         rigidBody = GetComponent<Rigidbody2D>();
         capCollider = GetComponent<BoxCollider2D>();
-        enemyFollow = FindObjectOfType<EnemyFollow>();
-        if(enemyFollow != null){
-            enemyFollow.SetPlayerController(this);
-        }
     }
     private void Update() {
         jumpInput -= Time.deltaTime;
