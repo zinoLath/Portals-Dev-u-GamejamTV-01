@@ -30,11 +30,18 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D capCollider;
     private Vector2 originalGravity;
     public Vector2 gravity;
+    private bool isPaused = false;
+    private EnemyFollow enemyFollow;
+
     void Start()
     {
         originalGravity = Physics2D.gravity;
         rigidBody = GetComponent<Rigidbody2D>();
         capCollider = GetComponent<BoxCollider2D>();
+        enemyFollow = FindObjectOfType<EnemyFollow>();
+        if(enemyFollow != null){
+            enemyFollow.SetPlayerController(this);
+        }
     }
     private void Update() {
         jumpInput -= Time.deltaTime;
@@ -126,6 +133,17 @@ public class PlayerController : MonoBehaviour
         else
         {
             rigidBody.gravityScale = Mathf.Lerp(1,gravityOnDown,-vertPut) * gravityStrength;
+        }
+    }
+
+    public void doYouOnPause(bool isGamePaused){
+        isPaused = !isGamePaused;
+        if (isPaused){
+            rigidBody.velocity = Vector2.zero;
+            rigidBody.isKinematic = true;
+        }
+        else{
+            rigidBody.isKinematic = false;
         }
     }
 }
