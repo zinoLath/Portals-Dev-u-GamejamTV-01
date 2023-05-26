@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float gravityOnUp;
     public float gravityOnDown;
     public bool isGrounded;
+    public int maxLives = 3; // Número máximo de vidas
     private ContactFilter2D groundFilter;
     private ContactFilter2D leftFilter;
     private ContactFilter2D rightFilter;
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalVelocity = 0.0f;
     private bool isWalledL;
     private bool isWalledR;
-
+    public int currentLives; // Vidas atual do jogador
     private Rigidbody2D rigidBody;
     private BoxCollider2D capCollider;
     private Vector2 originalGravity;
@@ -38,7 +40,51 @@ public class PlayerController : MonoBehaviour
         originalGravity = Physics2D.gravity;
         rigidBody = GetComponent<Rigidbody2D>();
         capCollider = GetComponent<BoxCollider2D>();
+        currentLives = maxLives; // Define as vidas iniciais para o máximo
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy")) // Verifica se o objeto que entrou na colisão é uma tag "Enemy"
+        {
+            currentLives--; // Decrementa uma vida
+
+            if (currentLives <= 0)
+            {
+                // O jogador perdeu todas as vidas, faça aqui o que for necessário
+                Debug.Log("Game Over");
+            }
+        }
+    }
+
+     public void TakeDamage(int damageAmount)
+    {
+        currentLives -= damageAmount; // Reduz a vida do jogador pelo valor do dano
+
+        if (currentLives <= 0)
+        {
+            // Se as vidas do jogador chegarem a zero, realiza a ação de fim de jogo
+            GameOver();
+        }
+    }
+        private void GameOver()
+    {
+        // Exibe tela de game over ou realiza outras ações
+        // Exemplo: Reiniciar o jogo após um atraso de 3 segundos
+
+        // Aqui você pode adicionar a lógica específica para exibir uma tela de game over ou reiniciar o jogo
+        // Neste exemplo, vamos reiniciar o jogo após um atraso de 3 segundos
+
+        // Usamos a função Invoke para aguardar 3 segundos antes de chamar o método RestartGame
+        Invoke("RestartGame", 3f);
+    }
+
+    private void RestartGame()
+    {
+        // Reinicia o jogo carregando novamente a cena atual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private void Update() {
         jumpInput -= Time.deltaTime;
         if(Input.GetButtonDown("Jump"))
