@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles.z + 180
         );
         gravityStrength *= -1;
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x,  rigidBody.velocity.y/3 + 5f * gravityStrength);
     }
 
     void FixedUpdate()
