@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody;
     private BoxCollider2D capCollider;
     private Vector2 originalGravity;
-    public Vector2 gravity;
     private bool isPaused = false;
 
 
@@ -91,7 +90,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpInput = 1f; //buffer
         }
-        gravity = Physics2D.gravity;
     }
 
     public void SetSkasisTurn(float angle)//chamando de skasis por causa de doctor who e pq tbm é referência a um ataque que eu fiz
@@ -99,9 +97,9 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(
             transform.eulerAngles.x,
             transform.eulerAngles.y,
-            angle
+            transform.eulerAngles.z + 180
         );
-        Physics2D.gravity = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle)) * 9.8f;
+        gravityStrength *= -1;
     }
 
     void FixedUpdate()
@@ -115,14 +113,14 @@ public class PlayerController : MonoBehaviour
         leftFilter = new ContactFilter2D();
         leftFilter.SetLayerMask(LayerMask.GetMask("Terrain"));
         leftFilter.useNormalAngle = true;
-        leftFilter.maxNormalAngle = transform.eulerAngles.z + 0 + 40;
-        leftFilter.minNormalAngle = transform.eulerAngles.z + 0 - 40;
+        leftFilter.maxNormalAngle = 0 + 40;
+        leftFilter.minNormalAngle = 0 - 40;
         
         rightFilter = new ContactFilter2D();
         rightFilter.SetLayerMask(LayerMask.GetMask("Terrain"));
         rightFilter.useNormalAngle = true;
-        rightFilter.maxNormalAngle = transform.eulerAngles.z + 180 + 40;
-        rightFilter.minNormalAngle = transform.eulerAngles.z + 180 - 40;
+        rightFilter.maxNormalAngle = 180 + 40;
+        rightFilter.minNormalAngle = 180 - 40;
         capCollider.GetContacts(groundFilter,contactList);
         isGrounded = false;
         foreach (ContactPoint2D colliPoint in contactList) //bem lento mas whatever
@@ -164,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
         if(jumpInput > 0 && isGrounded)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x,  rigidBody.velocity.y + jumpForce);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x,  rigidBody.velocity.y) + (Physics2D.gravity/-9.8f) * Mathf.Sign(gravityStrength) * jumpForce;
             jumpInput = -1000;
         }
         float vertPut = Input.GetAxisRaw("Vertical"); //se a pessoa segurar pra cima/baixo ela cai mais rápido ou devagar
