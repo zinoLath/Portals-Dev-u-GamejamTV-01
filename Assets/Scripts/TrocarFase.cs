@@ -20,7 +20,7 @@ public class TrocarFase : MonoBehaviour
         }
     }
 
-    private void CarregarNovaFase(){
+    public void CarregarNovaFase(){
         SceneManager.LoadScene(nomeDaFase);
     }
 }

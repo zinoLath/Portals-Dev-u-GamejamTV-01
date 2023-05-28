@@ -5592,7 +5592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60fd3608a73e243895cfeb0fa1db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDaFase: Next Fase
+  nomeDaFase: Next Fase 1
 --- !u!1 &1080667782
 GameObject:
   m_ObjectHideFlags: 0
