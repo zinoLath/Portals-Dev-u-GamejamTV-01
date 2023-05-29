@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void doYouOnPause(bool isGamePaused){
+        return;
         isPaused = !isGamePaused;
         if (isPaused){
             rigidBody.velocity = Vector2.zero;
