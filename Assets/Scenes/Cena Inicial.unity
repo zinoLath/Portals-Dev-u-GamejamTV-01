@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60fd3608a73e243895cfeb0fa1db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDaFase: Fase 1
+  proxFase: 
 --- !u!1 &511204401
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60fd3608a73e243895cfeb0fa1db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDaFase: Fase 1
+  proxFase: 
 --- !u!1 &884466141
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60fd3608a73e243895cfeb0fa1db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDaFase: Fase 1
+  proxFase: 
 --- !u!1 &1099015373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60fd3608a73e243895cfeb0fa1db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDaFase: Fase 1
+  proxFase: Fase 1
 --- !u!114 &2101521231
 MonoBehaviour:
   m_ObjectHideFlags: 0
