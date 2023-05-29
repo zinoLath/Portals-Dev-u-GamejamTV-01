@@ -91,14 +91,14 @@ public class PlayerController : MonoBehaviour
             jumpInput = 1f; //buffer
         }
     }
+    public void SetPositionOfTransform(Transform trans)
+    {
+        transform.position = trans.position;
+    }
 
     public void SetSkasisTurn(float angle)//chamando de skasis por causa de doctor who e pq tbm é referência a um ataque que eu fiz
     {
-        transform.eulerAngles = new Vector3(
-            transform.eulerAngles.x,
-            transform.eulerAngles.y,
-            transform.eulerAngles.z + 180
-        );
+        transform.localScale = new Vector3(transform.localScale.x,-transform.localScale.y,transform.localScale.z);
         gravityStrength *= -1;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x,  rigidBody.velocity.y/3 + 5f * gravityStrength);
     }
@@ -108,8 +108,8 @@ public class PlayerController : MonoBehaviour
         groundFilter = new ContactFilter2D();
         groundFilter.SetLayerMask(LayerMask.GetMask("Terrain"));
         groundFilter.useNormalAngle = true;
-        groundFilter.maxNormalAngle = transform.eulerAngles.z + 90 + 40;
-        groundFilter.minNormalAngle = transform.eulerAngles.z + 90 - 40;
+        groundFilter.maxNormalAngle = 90 + 40 + 90 + 90 * Mathf.Sign(-transform.localScale.y);
+        groundFilter.minNormalAngle = 90 - 40 + 90 + 90 * Mathf.Sign(-transform.localScale.y);
         
         leftFilter = new ContactFilter2D();
         leftFilter.SetLayerMask(LayerMask.GetMask("Terrain"));

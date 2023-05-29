@@ -54,7 +54,7 @@ public class EnemyMoviment : MonoBehaviour
     private void Jump()
     {
         // Adiciona uma força vertical ao inimigo para simular o pulo
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce * Mathf.Sign(GetComponent<Rigidbody2D>().gravityScale), ForceMode2D.Impulse);
 
         // Configura o timer de delay para evitar pulos consecutivos
         jumpTimer = jumpDelay;
