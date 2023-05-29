@@ -8,6 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cena Inicial.unity
     guid: 3e767a4ebcdd7f24aa5710a4e00dec73
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/FaseTeste.unity
+    guid: 33d036c494788c3459f2d09bb1ddc6ce
+  - enabled: 1
+    path: Assets/Scenes/Fase 3.unity
+    guid: d38f3b6ddd7390f44b717e1122bb426a
+  - enabled: 1
+    path: Assets/Scenes/Next Fase 2.unity
+    guid: e4b232b71020efd4e97ba46271ebc1fd
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Fase 1.unity
     guid: bb6621259ea6cb447bacccb9bc679095
@@ -15,24 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Next Fase 1.unity
     guid: f71807c6baf285c42a8f62cd5bd936c3
   - enabled: 1
-    path: Assets/Scenes/Fase 2.unity
-    guid: b9f44f3879e0a50478b378df79366cb7
-  - enabled: 1
-    path: Assets/Scenes/Next Fase 2.unity
-    guid: e4b232b71020efd4e97ba46271ebc1fd
-  - enabled: 1
-    path: Assets/Scenes/Fase 3.unity
-    guid: d38f3b6ddd7390f44b717e1122bb426a
-  - enabled: 1
     path: Assets/Scenes/Next Fase 3.unity
     guid: 240b702c349150d489ff64bfe01c5870
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/FaseTeste.unity
-    guid: 33d036c494788c3459f2d09bb1ddc6ce
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   m_configObjects: {}
